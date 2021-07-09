@@ -1,27 +1,49 @@
-<h2>Todos page</h2>
+<h2>TODO list</h2>
+
+<div class="row">
+    <div class="col s1">1</div>
+    <div class="col s1">2</div>
+    <div class="col s1">3</div>
+    <div class="col s1">4</div>
+    <div class="col s1">5</div>
+    <div class="col s1">6</div>
+    <div class="col s1">7</div>
+    <div class="col s1">8</div>
+    <div class="col s1">9</div>
+    <div class="col s1">10</div>
+    <div class="col s1">11</div>
+    <div class="col s1">12</div>
+</div>
 
 {{#if todos.length}}
-<ul>
-    {{#each todos}}
-      <li class="todo">
-          <form action="/complete" method="post">
-          <label>
-              {{#if completed}}
-                  <input type="checkbox" checked name="completed">
-                  <span class="completed">{{title}}</span>
-                  {{else}}
-                  <input type="checkbox" name="completed">
-                  <span>{{title}}</span>
-                  {{/if}}
+    <ul>
+        {{#each todos}}
+            <li class="todo row">
+                <div>
+                    <form id="update-{{_id}}" class="col s8" action="/update" method="post">
+                        <label>
+                            {{#if completed}}
+                                <input type="checkbox" checked name="completed">
+                                <span class="completed"></span>
+                            {{else}}
+                                <input type="checkbox" name="completed">
+                                <span class="completed"></span>
+                            {{/if}}
+                            <input value="{{title}}" name="title">
+                            <input hidden value="{{_id}}" name="_id">
+                        </label>
+                    </form>
 
-              <input type="hidden" value="{{_id}}" name="id">
+                    <form id="delete-{{_id}}" action="/delete" method="post">
+                        <input hidden value="{{_id}}" name="_id">
+                    </form>
 
-              <button class="btn btn-small">Seve</button>
-          </label>
-          </form>
-      </li>
+                    <button form="update-{{_id}}" class="btn btn-small col s2">Update</button>
+                    <button form="delete-{{_id}}" class="btn btn-small col s2">Delete</button>
+                </div>
+            </li>
         {{/each}}
     </ul>
 {{else}}
     <p>No todos!</p>
-    {{/if}}
+{{/if}}

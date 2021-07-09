@@ -6,7 +6,7 @@
     text-decoration: line-through;
 }
 
-.todo label {
+.todo div {
     width: 100%;
     display: flex;
     align-items: center;
@@ -16,7 +16,11 @@
     padding: 1rem;
 }
 
+.todo button {
+    display: inline-block;
+    margin: 5%;
+}
+
 .todo i {
     z-index: 2;
 }
-
